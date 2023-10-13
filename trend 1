@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Selection</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+<form id="trendForm">
+
+    <label for="weeklyTrend">Weekly Trend:</label>
+    <select id="weeklyTrend" name="weeklyTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="3monthTrend">3 Month Trend:</label>
+    <select id="3monthTrend" name="3monthTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="dailyTrend">Daily Trend:</label>
+    <select id="dailyTrend" name="dailyTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="4hourTrend">4 Hour Trend:</label>
+    <select id="4hourTrend" name="4hourTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="1hourTrend">1 Hour Trend:</label>
+    <select id="1hourTrend" name="1hourTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="15minTrend">15 Minute Trend:</label>
+    <select id="15minTrend" name="15minTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <label for="5minTrend">5 Minute Trend:</label>
+    <select id="5minTrend" name="5minTrend">
+        <option value="↑">Up</option>
+        <option value="↓">Down</option>
+        <option value="-">No Trend</option>
+    </select>
+    <br><br>
+
+    <button type="button" onclick="updateTable()">Submit</button>
+</form>
+
+<br>
+
+<table>
+    <thead>
+        <tr>
+            <th>Timeframe</th>
+            <th>Trend</th>
+            <th>Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Weekly</td>
+            <td id="tableWeeklyTrend">-</td>
+            <td><span id="dotWeekly" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>3 Month</td>
+            <td id="table3MonthTrend">-</td>
+            <td><span id="dot3Month" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>Daily</td>
+            <td id="tableDailyTrend">-</td>
+            <td><span id="dotDaily" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>4 Hour</td>
+            <td id="table4HourTrend">-</td>
+            <td><span id="dot4Hour" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>1 Hour</td>
+            <td id="table1HourTrend">-</td>
+            <td><span id="dot1Hour" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>15 Minute</td>
+            <td id="table15MinTrend">-</td>
+            <td><span id="dot15Min" class="dot"></span></td>
+        </tr>
+        <tr>
+            <td>5 Minute</td>
+            <td id="table5MinTrend">-</td>
+            <td><span id="dot5Min" class="dot"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function updateTable() {
+        updateRow('weeklyTrend', 'tableWeeklyTrend', 'dotWeekly');
+        updateRow('3monthTrend', 'table3MonthTrend', 'dot3Month');
+        updateRow('dailyTrend', 'tableDailyTrend', 'dotDaily');
+        updateRow('4hourTrend', 'table4HourTrend', 'dot4Hour');
+        updateRow('1hourTrend', 'table1HourTrend', 'dot1Hour');
+        updateRow('15minTrend', 'table15MinTrend', 'dot15Min');
+        updateRow('5minTrend', 'table5MinTrend', 'dot5Min');
+    }
+
+    function updateRow(selectId, textCellId, dotCellId) {
+        const trend = document.getElementById(selectId).value;
+        document.getElementById(textCellId).innerText = trend;
+
+        const dotElement = document.getElementById(dotCellId);
+        if (trend === '↑') {
+            dotElement.style.backgroundColor = 'green';
+        } else if (trend === '↓') {
+            dotElement.style.backgroundColor = 'red';
+        } else {
+            dotElement.style.backgroundColor = 'blue';
+        }
+    }
+</script>
+
+</body>
+</html>
